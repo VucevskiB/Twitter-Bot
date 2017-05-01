@@ -77,7 +77,7 @@ public class Main {
 	    //System.out.println("Showing home timeline.");
 	    for (Status status : statuses) {
 	        System.out.println(status.getUser().getName() + ":" + status.getText());
-	        	if(status.isFavorited() == false && status.isRetweet() == false) {
+	        	if(status.isFavorited() == false && status.isRetweet() == true) {
 	        		twitter.createFavorite(status.getId());
 	        	}
 	        	if(status.isRetweeted() == false &&  status.isRetweet() == false ) {
