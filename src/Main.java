@@ -69,7 +69,7 @@ public class Main {
 	          }
 	      } while ((cursor = ids.getNextCursor()) != 0 && relationship.isTargetFollowedBySource() == false);
 	}
-	
+	//test
 	
 	static void Follow_Retweats(Twitter twitter , String twitter_name) throws TwitterException{
 	    List<Status> statuses = twitter.getHomeTimeline();
