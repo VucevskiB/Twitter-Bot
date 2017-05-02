@@ -5,6 +5,7 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import twitter4j.*;
@@ -20,16 +21,16 @@ public class Main {
 		FileWriter fw = new FileWriter(file);
 
 		long time_seconds = 60; //seconds
-		Interval interval_ob = new Interval(time_seconds * 30);
+		Interval interval_ob = new Interval(time_seconds * 60);
 		
 		//CHANGE
 		cb.setDebugEnabled(true)
-		  .setOAuthConsumerKey("ltis54oHBgyh4eR8SFNLyCN04")
-		  .setOAuthConsumerSecret("wUDMjf9duV37HsGEe1o4zJDt16x3xoqknZriRHAWUKPUMU5aTA")
-		  .setOAuthAccessToken("3290557754-7zkrVwULqFhwVBWLkwzIQPTMGP256EzRwZOEoeA")
-		  .setOAuthAccessTokenSecret("OY1rv66DTxhjyFECXplrRHAGOjelRx29co0jk4liMuSPK");
+		  .setOAuthConsumerKey("5jHcCzUjg8IeJZmQX0SiTTrg9")
+		  .setOAuthConsumerSecret("AvrAJ4WwGJokqVmQ2AHOeVTB8rWyXrrmyHn4uZxSZPrkVzaxY8")
+		  .setOAuthAccessToken("3313760129-MdbdaX9s40JGtisZloycPR3xWBQmfUCFB7HBaA2")
+		  .setOAuthAccessTokenSecret("jCyELXizn1FbgEBPmaUz5q1IZh2etCBCtENZ307JKtVAO");
 		
-		String twitter_name = "HookyTheGame";
+		String twitter_name = "Game_dev_ty";
 		
 		
 		TwitterFactory tf = new TwitterFactory(cb.build());
@@ -75,7 +76,11 @@ public class Main {
 	    List<Status> statuses = twitter.getHomeTimeline();
 	    
 	    //System.out.println("Showing home timeline.");
+	    int i = 0;
 	    for (Status status : statuses) {
+	    	i++;
+	    	if(i > 10)break;
+	    	
         	System.out.println(status.getUser().getName() + ":" + status.getText());
         	if(status.isRetweet() == false) {
 	        	if(status.isFavorited() == false ) {
