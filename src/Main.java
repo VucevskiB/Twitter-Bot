@@ -76,13 +76,22 @@ public class Main {
 	    
 	    //System.out.println("Showing home timeline.");
 	    for (Status status : statuses) {
-	        System.out.println(status.getUser().getName() + ":" + status.getText());
-	        	if(status.isFavorited() == false && status.isRetweet() == false) {
+        	System.out.println(status.getUser().getName() + ":" + status.getText());
+        	if(status.isRetweet() == false) {
+	        	if(status.isFavorited() == false ) {
 	        		twitter.createFavorite(status.getId());
 	        	}
-	        	if(status.isRetweeted() == false &&  status.isRetweet() == false ) {
+	        	if(status.isRetweeted() == false ) {
 	        		twitter.retweetStatus(status.getId());
 	        	}
+        	}else{
+        		if(status.getRetweetedStatus().isFavorited() == false ) {
+	        		twitter.createFavorite(status.getRetweetedStatus().getId());
+	        	}
+	        	if(status.getRetweetedStatus().isRetweeted() == false ) {
+	        		twitter.retweetStatus(status.getRetweetedStatus().getId());
+	        	}
+        	}
 	        if(status.isRetweet() &&  status != null) {
 	        	Relationship relationship = twitter.showFriendship(twitter_name, status.getRetweetedStatus().getUser().getScreenName());
 	        	if(relationship.isTargetFollowedBySource() == false) {
